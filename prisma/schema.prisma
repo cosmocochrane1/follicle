@@ -1,0 +1,191 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("SUPABASE_DATABASE_URL")
+}
+
+model organizations {
+  id            String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name          String
+  description   String?
+  owner_id      String?                 @db.Uuid
+  thumbnail_url String?
+  created_at    DateTime            @default(now())
+  updated_at    DateTime            @default(now()) @updatedAt @db.Timestamptz(6)
+  documents     documents[]
+  projects      projects[]
+  profiles      profile_organizations[]
+}
+
+model comments {
+  id         String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  content    String
+  version_id String            @db.Uuid
+  profile_id String            @db.Uuid
+  profiles   profiles          @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  version    document_versions @relation(fields: [version_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model projects {
+  id              String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name            String
+  description     String?
+  thumbnail_url   String?
+  pdf_url         String?
+  created_by      String             @db.Uuid
+  updated_at      DateTime           @default(now()) @updatedAt @db.Timestamptz(6)
+  organization_id String             @db.Uuid
+  // each project automatically has one chatroom
+  chatroom_id     String             @unique @db.Uuid @default(dbgenerated("gen_random_uuid()"))
+  documents       documents[]
+  profiles        profile_projects[]
+  organization    organizations      @relation(fields: [organization_id], references: [id])
+  chatroom        chatrooms          @relation(fields: [chatroom_id], references: [id])
+}
+
+model documents {
+  id                 String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name               String
+  order              Int                 @default(1)
+  organization_id    String              @db.Uuid
+  project_id         String?             @db.Uuid
+  thumbnail_url      String?
+  preview_urls       String[]
+  storage_bucket_key String              @unique
+  created_by         String              @db.Uuid
+  created_at         DateTime            @default(now())
+  updated_at         DateTime            @default(now()) @updatedAt @db.Timestamptz(6)
+  // each document automatically has one chatroom
+  chatroom_id        String              @unique @db.Uuid @default(dbgenerated("gen_random_uuid()"))
+  versions           document_versions[]
+  organization       organizations       @relation(fields: [organization_id], references: [id])
+  project            projects?           @relation(fields: [project_id], references: [id])
+  profiles           profile_documents[]
+  chatroom           chatrooms?          @relation(fields: [chatroom_id], references: [id])
+}
+
+model document_versions {
+  id            String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name          String
+  number        Int        @default(autoincrement())
+  thumbnail_url String?
+  storage_key   String     @unique
+  original_name String
+  file_type     String?
+  file_size     Int?
+  checksum      String?
+  created_by    String     @db.Uuid
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @default(now()) @updatedAt @db.Timestamptz(6)
+  room_id       String     @db.Uuid
+  document_id   String     @db.Uuid
+  comments      comments[]
+  document      documents  @relation(fields: [document_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model profiles {
+  id               String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  auth_user_id     String                  @unique @db.Uuid
+  username         String?
+  full_name        String?
+  email            String?                 @unique
+  avatar_url       String?
+  /// profile's sent messages
+  messages         messages[]
+  comments         comments[]
+  documents        profile_documents[]
+  projects         profile_projects[]
+  organizations    profile_organizations[]
+  chatrooms        profile_chatrooms[]
+  unread_chatrooms unread_chatrooms[]
+}
+
+model profile_projects {
+  project_id   String   @db.Uuid
+  profile_id   String   @db.Uuid
+  scope_access String   @default("read")
+  scope        scopes   @relation(fields: [scope_access], references: [access])
+  profile      profiles @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  project      projects @relation(fields: [project_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([project_id, profile_id])
+}
+
+model profile_documents {
+  document_id  String    @db.Uuid
+  profile_id   String    @db.Uuid
+  scope_access String    @default("read")
+  scope        scopes    @relation(fields: [scope_access], references: [access])
+  document     documents @relation(fields: [document_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  profile      profiles  @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([document_id, profile_id])
+}
+
+model profile_organizations {
+  organization_id String        @db.Uuid
+  profile_id      String        @db.Uuid
+  scope_access    String        @default("read")
+  scope           scopes        @relation(fields: [scope_access], references: [access])
+  organization    organizations @relation(fields: [organization_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+  profile         profiles      @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([organization_id, profile_id])
+}
+
+model scopes {
+  id                    String                  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  access                String                  @unique @default("read") //e.g write, read, admin <-- currently supabase doesnt support enums for some fucking reason
+  description           String?
+  profile_documents     profile_documents[]
+  profile_projects      profile_projects[]
+  profile_organizations profile_organizations[]
+}
+
+model chatrooms {
+  id               String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name             String
+  created_at       DateTime            @default(now())
+  updated_at       DateTime            @default(now()) @updatedAt @db.Timestamptz(6)
+  profiles         profile_chatrooms[]
+  messages         messages[]
+  project          projects?
+  document         documents?
+  unread_chatrooms unread_chatrooms[]
+}
+
+model messages {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  type        String    @default("text")
+  content     String
+  sender_id   String    @db.Uuid
+  chatroom_id String    @db.Uuid
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @default(now()) @updatedAt @db.Timestamptz(6)
+  sender      profiles  @relation(fields: [sender_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  chatroom    chatrooms @relation(fields: [chatroom_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+}
+
+model profile_chatrooms {
+  chatroom_id String    @db.Uuid
+  profile_id  String    @db.Uuid
+  created_at  DateTime  @default(now())
+  updated_at  DateTime  @default(now()) @updatedAt @db.Timestamptz(6)
+  profile     profiles  @relation(fields: [profile_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  chatrooms   chatrooms @relation(fields: [chatroom_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@id([chatroom_id, profile_id])
+}
+
+// For notifiying users of chatrooms with unread messages
+model unread_chatrooms {
+  profile_id  String     @db.Uuid
+  profile     profiles   @relation(fields: [profile_id], references: [id])
+  chatroom_id String     @db.Uuid
+  chatroom    chatrooms? @relation(fields: [chatroom_id], references: [id])
+
+  @@id([profile_id, chatroom_id])
+}

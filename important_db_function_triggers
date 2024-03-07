@@ -1,0 +1,37 @@
+Trigger: on_auth_user_created
+Function:
+  BEGIN
+    INSERT INTO public.profiles (id, auth_user_id, full_name, avatar_url, email)
+    VALUES (
+      NEW.id, 
+      NEW.id,
+      COALESCE(NEW.raw_user_meta_data->>'full_name', 'Anonymous'),
+      COALESCE(NEW.raw_user_meta_data->>'avatar_url', ''),
+      COALESCE(NEW.raw_user_meta_data->>'email', NEW.email)
+    );
+    RETURN NEW;
+  END;
+
+Trigger: on_project_created
+Function:
+  BEGIN
+    INSERT INTO public.profile_projects (project_id, profile_id)
+    VALUES (
+      NEW.id, 
+      auth.uid()
+    );
+    RETURN NEW;
+  END;
+
+Trigger: on_document_created
+Function:
+BEGIN
+  INSERT INTO public.profile_documents (document_id, profile_id)
+  VALUES (
+    NEW.id, 
+    auth.uid()
+  );
+  RETURN NEW;
+END;
+
+

@@ -1,0 +1,111 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("SUPABASE_DATABASE_URL")
+}
+
+enum permissions {
+  Admin
+  Write
+  Read
+  PresenceWrite
+  CommentsWrite
+  CommentsRead
+}
+
+model organizations {
+  id        Int         @id @default(autoincrement())
+  name      String
+  documents documents[]
+  profiles  profiles[]
+  projects  projects[]
+}
+
+model comments {
+  id         Int               @id @default(autoincrement())
+  content    String
+  version_id Int
+  profile_id String            @db.Uuid
+  profiles   profiles          @relation(fields: [profile_id], references: [id])
+  version    document_versions @relation(fields: [version_id], references: [id])
+}
+
+model projects {
+  id              Int                @id @default(autoincrement())
+  name            String
+  description     String?
+  profile_id      String             @db.Uuid
+  organization_id Int
+  documents       documents[]
+  organization    organizations      @relation(fields: [organization_id], references: [id])
+  profiles        profile_projects[]
+}
+
+model documents {
+  id                 Int                 @id @default(autoincrement())
+  name               String
+  organization_id    Int
+  project_id         Int?
+  storage_bucket_key String              @unique @default("main")
+  versions           document_versions[]
+  organization       organizations       @relation(fields: [organization_id], references: [id])
+  project            projects?           @relation(fields: [project_id], references: [id])
+  profiles           profile_documents[]
+}
+
+model document_versions {
+  id            Int        @id @default(autoincrement())
+  number        Int
+  storage_key   String     @unique
+  original_name String?
+  file_type     String?
+  file_size     Int?
+  checksum      String?
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @updatedAt
+  room_id       String     @db.Uuid
+  document_id   Int
+  comments      comments[]
+  document      documents  @relation(fields: [document_id], references: [id])
+}
+
+model profiles {
+  id              String              @id @default(uuid()) @db.Uuid
+  auth_user_id    String              @unique @db.Uuid
+  username        String?
+  full_name       String?
+  email           String?             @unique
+  avatar_url      String?
+  organization_id Int                 @default(1)
+  comments        comments[]
+  organization    organizations       @relation(fields: [organization_id], references: [id])
+  documents       profile_documents[]
+  projects        profile_projects[]
+}
+
+model profile_projects {
+  project_id  Int // relation scalar field (used in the `@relation` attribute above)
+  project     projects      @relation(fields: [project_id], references: [id])
+  profile_id  String        @db.Uuid // relation scalar field (used in the `@relation` attribute above)
+  profile     profiles      @relation(fields: [profile_id], references: [id])
+  assignedAt  DateTime      @default(now())
+  assignedBy  String
+  permissions permissions[]
+
+  @@id([project_id, profile_id])
+}
+
+model profile_documents {
+  document    documents     @relation(fields: [document_id], references: [id])
+  document_id Int // relation scalar field (used in the `@relation` attribute above)
+  profile     profiles      @relation(fields: [profile_id], references: [id])
+  profile_id  String        @db.Uuid // relation scalar field (used in the `@relation` attribute above)
+  assignedAt  DateTime      @default(now())
+  assignedBy  String
+  permissions permissions[]
+
+  @@id([document_id, profile_id])
+}
