@@ -1,3 +1,4 @@
+import { DoctorSearch } from "@/components/DoctorSearch";
 import LucideIcon from "@/components/LucideIcon";
 import { Footer, Navbar } from "@/components/MarketingPage";
 import { Button } from "@/components/ui/button";
@@ -5,40 +6,39 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { Element } from "react-scroll";
-import styled from 'styled-components'
-
+import styled from "styled-components";
 
 const FloatingRectangleOne = styled.img`
   position: absolute;
   top: 25px;
   left: 25px;
-`
+`;
 const FloatingRectangleTwo = styled.img`
   position: absolute;
   bottom: 25px;
   right: 0px;
-`
-
+`;
 
 const DoctorSquare = ({ name, specialty, rating, reviewCount, location }) => {
   return (
-    <Container className={'rounded-lg mx-4 flex flex-col bg-white p-6'}>
+    <Container className={"rounded-lg mx-4 flex flex-col bg-white p-6"}>
       <ProfilePicture src="/doctor-circle.png" />
       <p className="text-base text-secondary-foreground">{name}</p>
       <p className={"text-sm pt-1 text-muted-foreground"}>{specialty}</p>
-      <p className={"text-sm pt-3 text-secondary-foreground"}>{rating} <span className="underline text-muted-foreground">{reviewCount}</span></p>
+      <p className={"text-sm pt-3 text-secondary-foreground"}>
+        {rating}{" "}
+        <span className="underline text-muted-foreground">{reviewCount}</span>
+      </p>
       <p className={"text-sm pt-3 text-muted-foreground"}>{location}</p>
     </Container>
-  )
-}
+  );
+};
 
-const Container = styled.div`
-
-`
+const Container = styled.div``;
 const ProfilePicture = styled.img`
   width: 124px;
   height: 124px;
-`
+`;
 
 const MarketingPage = () => {
   return (
@@ -46,33 +46,37 @@ const MarketingPage = () => {
       <Navbar />
       <WholePageContainer className="pt-32">
         <HeroSection className="container mx-auto">
-          <CornerImage
-            src="/corner-image.png"
-            className=""
-          />
+          <CornerImage src="/corner-image.png" className="" />
           <div className="flex flex-col items-center justify-center pb-14 md:pb-40">
-            <div className={'max-w-[650px]'}>
+            <div className={"max-w-[650px]"}>
               <HeroText className="w-full mb-4 text-center text-black text-8xl md:text-7xl">
-                Find A Doctor<br /> To Fix Your Shit
+                Find A Doctor
+                <br /> To Fix Your Shit
               </HeroText>
             </div>
 
-            <div className="relative max-w-[1200px] w-full aspect-video mt-10">
-            </div>
+            <DoctorSearch />
+            <form></form>
+
+            <div className="relative max-w-[1200px] w-full aspect-video mt-10"></div>
           </div>
         </HeroSection>
 
         <section className="relative overflow-hidden bg-card">
-          <FloatingRectangleOne src={'/floating-rectangle-1.png'}/>
-          <FloatingRectangleTwo src={'/floating-rectangle-2.png'}/>
- 
+          <FloatingRectangleOne src={"/floating-rectangle-1.png"} />
+          <FloatingRectangleTwo src={"/floating-rectangle-2.png"} />
+
           <div className="container w-full py-20 mx-auto">
             <div className="flex flex-col items-center justify-center">
               <h2 className="text-2xl md:text-4xl">
                 Most Trusted Professionals
               </h2>
             </div>
-            <div className={'flex relative flex-row mt-[75px] mb-[75px] w-full justify-center'}>
+            <div
+              className={
+                "flex relative flex-row mt-[75px] mb-[75px] w-full justify-center"
+              }
+            >
               <DoctorSquare
                 name={"Dr. Christopher Corrales, DO"}
                 specialty={"Primary care doctor"}
@@ -107,7 +111,6 @@ const MarketingPage = () => {
           </div>
         </section>
 
-
         <Element name="contact">
           <section className="py-20 bg-card">
             <div className="container flex flex-col items-center justify-center mx-auto text-center">
@@ -133,17 +136,15 @@ const MarketingPage = () => {
 export default MarketingPage;
 
 const HeroSection = styled.div`
-  background: #F5FCFB; 
+  background: #f5fcfb;
   background-size: 200% 100%;
-
 `;
 
 const WholePageContainer = styled.div`
-  background: #F5FCFB; 
-`
+  background: #f5fcfb;
+`;
 
-const HeroText = styled.h1`
-`
+const HeroText = styled.h1``;
 
 const CornerImage = styled.img`
   position: absolute;
@@ -152,4 +153,4 @@ const CornerImage = styled.img`
   height: auto;
   left: 0;
   z-index: 0;
-`
+`;
