@@ -22,7 +22,7 @@ const PasswordInput = React.forwardRef(({ className, ...props }, ref) => {
         onClick={() => !props.disabled && setShowPassword((prev) => !prev)}
       >
         <LucideIcon
-          className="h-5 w-5"
+          className="w-5 h-5"
           name={showPassword ? "eye-off" : "eye"}
         />
       </span>
@@ -32,7 +32,7 @@ const PasswordInput = React.forwardRef(({ className, ...props }, ref) => {
 
 const Input = React.forwardRef(({ className, type, icon, ...props }, ref) => {
   const formattedClassName = cn(
-    "flex h-10 w-full rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+    "flex h-10 w-full rounded-md border border-border bg-input px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none  disabled:cursor-not-allowed disabled:opacity-50",
     className
   );
 

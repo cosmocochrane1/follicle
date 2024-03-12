@@ -19,7 +19,8 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        sans: ["Montserrat", "sans-serif"],
+        sans: ["DM Sans", "sans-serif"],
+        serif: ["Canela Text", "serif"],
       },
       colors: {
         primaryText: '#545454',
@@ -41,6 +42,12 @@ module.exports = {
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
+        },
+        tertiary: {
+          DEFAULT: "hsl(var(--tertiary))",
+          foreground: "hsl(var(--tertiary-foreground))",
+          foregroundSecondary: "hsl(var(--tertiary-foreground-secondary))",
+
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",

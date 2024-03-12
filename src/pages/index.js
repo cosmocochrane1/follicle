@@ -19,15 +19,14 @@ const FloatingRectangleTwo = styled.img`
   right: 0px;
 `
 
-
 const DoctorSquare = ({ name, specialty, rating, reviewCount, location }) => {
   return (
-    <Container className={'rounded-lg mx-4 flex flex-col bg-white p-6'}>
+    <Container className={'rounded-lg  flex flex-col bg-white p-6'}>
       <ProfilePicture src="/doctor-circle.png" />
       <p className="text-base text-secondary-foreground">{name}</p>
       <p className={"text-sm pt-1 text-muted-foreground"}>{specialty}</p>
-      <p className={"text-sm pt-3 text-secondary-foreground"}>{rating} <span className="underline text-muted-foreground">{reviewCount}</span></p>
-      <p className={"text-sm pt-3 text-muted-foreground"}>{location}</p>
+      <p className={"text-sm pt-3 text-secondary-foreground font-bold flex gap-2"}><LucideIcon name={'star'} className={'text-orange'} />{rating} <span className="font-normal underline text-muted-foreground">{reviewCount}</span></p>
+      <p className={"text-sm pt-3 text-muted-foreground flex gap-2"}><LucideIcon name={'map-pin'} className={'text-orange'} />{location}</p>
     </Container>
   )
 }
@@ -42,7 +41,7 @@ const ProfilePicture = styled.img`
 
 const MarketingPage = () => {
   return (
-    <div className=" text-foreground text-opacity-85">
+    <div className="text-foreground text-opacity-85 m-w-[1920px]">
       <Navbar />
       <WholePageContainer className="pt-32">
         <HeroSection className="container mx-auto">
@@ -52,7 +51,7 @@ const MarketingPage = () => {
           />
           <div className="flex flex-col items-center justify-center pb-14 md:pb-40">
             <div className={'max-w-[650px]'}>
-              <HeroText className="w-full mb-4 text-center text-black text-8xl md:text-7xl">
+              <HeroText className="w-full mb-4 font-serif text-center text-black text-8xl md:text-7xl">
                 Find A Doctor<br /> To Fix Your Shit
               </HeroText>
             </div>
@@ -62,17 +61,17 @@ const MarketingPage = () => {
           </div>
         </HeroSection>
 
-        <section className="relative overflow-hidden bg-card">
-          <FloatingRectangleOne src={'/floating-rectangle-1.png'}/>
-          <FloatingRectangleTwo src={'/floating-rectangle-2.png'}/>
- 
+        <section className="relative overflow-hidden bg-white bg-card">
+          <FloatingRectangleOne src={'/floating-rectangle-1.png'} />
+          <FloatingRectangleTwo src={'/floating-rectangle-2.png'} />
+
           <div className="container w-full py-20 mx-auto">
             <div className="flex flex-col items-center justify-center">
-              <h2 className="text-2xl md:text-4xl">
+              <h2 className="z-10">
                 Most Trusted Professionals
               </h2>
             </div>
-            <div className={'flex relative flex-row mt-[75px] mb-[75px] w-full justify-center'}>
+            <div className={'grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 relative flex-row mt-[75px] mb-[75px] w-full justify-center'}>
               <DoctorSquare
                 name={"Dr. Christopher Corrales, DO"}
                 specialty={"Primary care doctor"}
@@ -80,6 +79,7 @@ const MarketingPage = () => {
                 reviewCount={"420 Verified Reviews"}
                 location={"Sugar Land, TX"}
               />
+
               <DoctorSquare
                 name={"Dr. Christopher Corrales, DO"}
                 specialty={"Primary care doctor"}
@@ -107,22 +107,28 @@ const MarketingPage = () => {
           </div>
         </section>
 
+        <section className={'bg-white'}>
+          <div className={'m-auto container w-[80%] bg-lightOrange rounded-lg p-6'}>
 
-        <Element name="contact">
-          <section className="py-20 bg-card">
-            <div className="container flex flex-col items-center justify-center mx-auto text-center">
-              <h2 className="mb-3 text-3xl md:text-4xl">Want to learn more?</h2>
-              <p className="mb-8">
-                Join the waitlist to be the first to hear about our Beta launch
-                and to arrange early access to our tools and vendors.
-              </p>
+          <div className={'text-center flex flex-col items-center '}>
+            <h2 >3 Easy Steps to get your Solution</h2>
+            <p className={'subheader-text max-w-[650px] mt-[30px]'}>These alternatives to the classic Lorem Ipsum texts are often amusing and tell short, funny or nonsensical stories.</p>
+          </div>
+          <div className={'flex flex-col justify-center mt-[30px]'}>
+            <div>
+              <div>
 
-              <Button size="lg" asChild>
-                <Link href="/auth">Get started</Link>
-              </Button>
+              </div>
+              <div className={'flex flex-col'}>
+
+
+              </div>
             </div>
-          </section>
-        </Element>
+
+          </div>
+          </div>
+        </section>
+
       </WholePageContainer>
 
       <Footer />
