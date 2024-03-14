@@ -2,6 +2,140 @@
 @tailwind components;
 @tailwind utilities;
 
+h2 {
+  font-size: 46px;
+}
+
+.subheader-text {
+  font-size: 18px;
+}
+
+@font-face {
+  font-family: "Canela Text";
+  src: url("/fonts/CanelaText-Regular-Trial.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Canela Text";
+  src: url("/fonts/CanelaText-RegularItalic-Trial.otf") format("opentype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Canela Text";
+  src: url("/fonts/CanelaText-Medium-Trial.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Canela Text";
+  src: url("/fonts/CanelaText-MediumItalic-Trial.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Canela Text";
+  src: url("/fonts/CanelaText-Bold-Trial.otf") format("opentype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Canela Text";
+  src: url("/fonts/CanelaText-BoldItalic-Trial.otf") format("opentype");
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Canela Text";
+  src: url("/fonts/CanelaText-Light-Trial.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Canela Text";
+  src: url("/fonts/CanelaText-LightItalic-Trial.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Canela Text";
+  src: url("/fonts/CanelaText-Black-Trial.otf") format("opentype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Canela Text";
+  src: url("/fonts/CanelaText-BlackItalic-Trial.otf") format("opentype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Canela Text";
+  src: url("/fonts/CanelaText-Thin-Trial.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Canela Text";
+  src: url("/fonts/CanelaText-ThinItalic-Trial.otf") format("opentype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/fonts/DMSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/fonts/DMSans-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/fonts/DMSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/fonts/DMSans-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/fonts/DMSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DM Sans";
+  src: url("/fonts/DMSans-BoldItalic.ttf") format("truetype");
+  font-weight: bold;
+  font-style: italic;
+}
+
 @layer base {
   :root {
     /* Liveblocks light mode variables */
@@ -14,34 +148,60 @@
 
     /* Our light mode theme */
     --background: 172 63% 50%;
+    /* Light mode background color (light blue) */
     --foreground: 220 10% 20%;
+    /* Light mode foreground color (dark gray) */
 
-    --card: 0, 0%, 100%;
+    --card: 220 16.92% 97%;
+    /* Card background color (light gray) */
     --card-foreground: 220 10% 20%;
+    /* Card foreground color (dark gray) */
 
     --popover: 220 16.92% 97%;
+    /* Popover background color (light gray) */
     --popover-foreground: 220 10% 20%;
+    /* Popover foreground color (dark gray) */
 
     --primary: 172 63% 50%;
+    /* Primary color (light blue) */
     --primary-foreground: 0 0% 100%;
+    /* Primary foreground color (white) */
 
     --secondary: 171 54% 97%;
+    /* Secondary color (light gray) */
     --secondary-foreground: 0 0% 6%;
+    /* Secondary foreground color (black) */
+
+    --tertiary: 0 0% 6%;
+    /* Secondary color (light gray) */
+    --tertiary-foreground: 0 0% 100%;
+    /* Secondary foreground color (black) */
+    --tertiary-foreground-secondary: 210, 25%, 80%;
 
     --accent: 240 3.7% 93%;
+    /* Accent color (light gray) */
     --accent-foreground: 220 10% 15.9%;
+    /* Accent foreground color (dark gray) */
 
     --destructive: 0 62.8% 30.6%;
+    /* Destructive color (dark red) */
     --destructive-foreground: 220 10% 95%;
+    /* Destructive foreground color (light gray) */
 
     --muted: 0 0% 100%;
+    /* Muted color (white) */
     --muted-foreground: 0 0% 33%;
+    /* Muted foreground color (dark gray) */
 
     --border: 220 18.87% 91%;
+    /* Border color (light gray) */
     --input: 220 16.92% 95%;
+    /* Input background color (light gray) */
     --ring: 218 92% 53.3%;
+    /* Ring color (dark blue) */
 
     --radius: 0.5rem;
+    /* Border radius */
   }
 }
 
@@ -55,8 +215,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: "Montserrat", sans-serif;
+    font-family: "Canela Text", sans-serif;
   }
 }
 
@@ -75,4 +234,15 @@
 
 .lb-composer-editor {
   @apply text-sm !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none !important;
+}
+
+*:focus {
+  outline: none !important;
 }

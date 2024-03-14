@@ -59,7 +59,7 @@ const Navbar = () => {
 
             <div className="items-center justify-end hidden space-x-3 md:flex">        
               <Button className="rounded-full" asChild>
-                <Link href="/auth">Get started</Link>
+                <Link href="">Get started</Link>
               </Button>
             </div>
 
@@ -77,7 +77,7 @@ const Navbar = () => {
           open={showMobileNav}
           onOpenChange={(value) => setShowMobileNav(value)}
         >
-          <SheetContent className="pt-16">
+          <SheetContent className="pt-16 bg-white">
             <ul className="flex flex-col">
               {menus.map((menu) => (
                 <li key={menu.title} className="relative flex-col mb-2">
@@ -95,14 +95,14 @@ const Navbar = () => {
               ))}
             </ul>
 
-            <div className="grid grid-cols-2 gap-5 mt-6">
+            {/* <div className="grid grid-cols-2 gap-5 mt-6">
               <Button className="rounded-full" asChild>
                 <Link className="rounded-full" href="/auth">Get started</Link>
               </Button>
               <Button asChild variant="ghost">
                 <Link href="/auth">Login</Link>
               </Button>
-            </div>
+            </div> */}
           </SheetContent>
         </Sheet>
       </div>
