@@ -10,12 +10,12 @@ import styled from "styled-components";
 
 const FloatingRectangleOne = styled.img`
   position: absolute;
-  top: 25px;
+  top: 85px;
   left: 25px;
 `;
 const FloatingRectangleTwo = styled.img`
   position: absolute;
-  bottom: 25px;
+  bottom: 125px;
   right: 0px;
 `;
 
@@ -59,28 +59,28 @@ const MarketingPage = () => {
       <WholePageContainer className="pt-32">
         <HeroSection className="container mx-auto">
           <CornerImage src="/corner-image.png" className="" />
-          <div className="flex flex-col items-center justify-center pb-14 md:pb-40">
+          <div className="flex flex-col items-center justify-center pb-14">
             <div className={"max-w-[650px]"}>
-              <HeroText className="w-full mb-4 font-serif text-center text-black text-8xl md:text-7xl">
-                Find A Doctor
-                <br /> To Fix Your Shit
+              <HeroText className="w-full mb-4 font-serif max-w-[992px] leading-snug md:leading-snug text-center font-extrabold text-black text-5xl md:text-7xl">
+                Find A Doctor To Fix Your Shit
               </HeroText>
             </div>
-
+            <div className="h-[90px]" />
             <DoctorSearch />
-            <form></form>
-
-            <div className="relative max-w-[1200px] w-full aspect-video mt-10"></div>
+            <div className="h-[90px]" />
           </div>
         </HeroSection>
 
         <section className="relative overflow-hidden bg-white bg-card">
+          <div className="h-[90px]" />
           <FloatingRectangleOne src={"/floating-rectangle-1.png"} />
           <FloatingRectangleTwo src={"/floating-rectangle-2.png"} />
 
           <div className="container w-full py-20 mx-auto">
-            <div className="flex flex-col items-center justify-center">
-              <h2 className="z-10">Most Trusted Professionals</h2>
+            <div className="flex flex-col items-center justify-center font-serif">
+              <h2 className="font-extrabold text-5xl">
+                Most Trusted Professionals
+              </h2>
             </div>
             <div
               className={
@@ -119,41 +119,98 @@ const MarketingPage = () => {
                 location={"Sugar Land, TX"}
               />
             </div>
+            <div className="flex items-center justify-center pt-0">
+              <Button
+                variant="outline"
+                className="rounded-full gap-2 border-primary text-primary hover:text-primary"
+              >
+                See More
+                <LucideIcon name="arrow-right" className="w-4 h-4" />
+              </Button>
+            </div>
           </div>
         </section>
 
         <section className={"bg-white"}>
           <div
-            className={"m-auto container w-[80%] bg-lightOrange rounded-lg p-6"}
+            className={
+              "m-auto container w-[80%] bg-lightOrange rounded-lg p-6 py-14"
+            }
           >
-            <div className={"text-center flex flex-col items-center"}>
-              <h2>3 Easy Steps to get your Solution</h2>
-              <p className={"subheader-text max-w-[650px] mt-[30px]"}>
-                These alternatives to the classic Lorem Ipsum texts are often
-                amusing and tell short, funny or nonsensical stories.
-              </p>
-            </div>
+            <div className="w-3/4 mx-auto">
+              <div className={"text-center flex flex-col items-center"}>
+                <h2 className="font-extrabold text-5xl font-serif">
+                  3 Easy Steps to get your Solution
+                </h2>
+                <p className={"subheader-text max-w-[650px] pt-14 pb-0"}>
+                  These alternatives to the classic Lorem Ipsum texts are often
+                  amusing and tell short, funny or nonsensical stories.
+                </p>
+              </div>
 
-            <div className={"flex flex-col justify-center mt-[30px]"}>
-              <SingleFeatureList
-                className={
-                  "bg-white gap-[34px] rounded-sm flex flex-row p-[15px]"
-                }
-              >
-                <div className={"p-[25px] bg-lightOrange rounded-md"}>
-                  <img src={"/searchDoctor.png"} alt={"search doctor"} />
-                </div>
-                <div className={"flex flex-col"}>
-                  <p className={"text-5"}>Search Doctor</p>
-                  <p className={"text-3"}>
-                    These alternatives to the classic Lorem Ipsum texts are
-                    often amusing and tell short.
-                  </p>
-                </div>
-              </SingleFeatureList>
+              <div className={"flex flex-col justify-center pt-14 space-y-4"}>
+                <SingleFeatureList
+                  className={
+                    "bg-white gap-[34px] rounded-sm flex flex-row p-[15px]"
+                  }
+                >
+                  <div className={"p-[25px] bg-lightOrange rounded-md"}>
+                    <img src={"/searchDoctor.png"} alt={"search doctor"} />
+                  </div>
+                  <div className={"flex flex-col items-start justify-center"}>
+                    <h4 className={"font-serif font-bold text-2xl"}>
+                      Search Doctor
+                    </h4>
+                    <p className={" font-extralight pt-2"}>
+                      These alternatives to the classic Lorem Ipsum texts are
+                      often amusing and tell short.
+                    </p>
+                  </div>
+                </SingleFeatureList>
+                <SingleFeatureList
+                  className={
+                    "bg-white gap-[34px] rounded-sm flex flex-row p-[15px]"
+                  }
+                >
+                  <div className={"p-[25px] bg-lightOrange rounded-md"}>
+                    <img
+                      src={"/searchDoctor.png"}
+                      alt={"Schedule Appointment"}
+                    />
+                  </div>
+                  <div className={"flex flex-col items-start justify-center"}>
+                    <h4 className={"font-serif font-bold text-2xl"}>
+                      Schedule Appointment
+                    </h4>
+                    <p className={" font-extralight pt-2"}>
+                      These alternatives to the classic Lorem Ipsum texts are
+                      often amusing and tell short.
+                    </p>
+                  </div>
+                </SingleFeatureList>
+                <SingleFeatureList
+                  className={
+                    "bg-white gap-[34px] rounded-sm flex flex-row p-[15px]"
+                  }
+                >
+                  <div className={"p-[25px] bg-lightOrange rounded-md"}>
+                    <img src={"/searchDoctor.png"} alt={"Get Your Solution"} />
+                  </div>
+                  <div className={"flex flex-col items-start justify-center"}>
+                    <h4 className={"font-serif font-bold text-2xl"}>
+                      Get Your Solution
+                    </h4>
+                    <p className={" font-extralight pt-2"}>
+                      These alternatives to the classic Lorem Ipsum texts are
+                      often amusing and tell short.
+                    </p>
+                  </div>
+                </SingleFeatureList>
+              </div>
             </div>
           </div>
         </section>
+        <div className="h-[90px] bg-background" />
       </WholePageContainer>
 
       <Footer />

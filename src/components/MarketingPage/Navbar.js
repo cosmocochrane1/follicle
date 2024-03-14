@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { Link as ReactScrollLink } from "react-scroll";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const menus = [
   { title: "Home", href: "/", id: "hero" },
@@ -13,10 +13,7 @@ const menus = [
   { title: "Testimonial", href: "/#features", id: "features" },
   { title: "FAQs", href: "/#contact", id: "contact" },
   { title: "Contact", href: "/#contact", id: "contact" },
-
 ];
-
-
 
 const Navbar = () => {
   const [showMobileNav, setShowMobileNav] = useState(false);
@@ -47,18 +44,18 @@ const Navbar = () => {
                       spy
                       offset={-150}
                       to={menu.id}
-                      className="relative block py-5 text-black text-opacity-85"
-                      activeClass="font-semibold	font-semibold	after:content-[''] text-orange after:absolute after:bottom-[-2px] after:right-0 after:left-0 after:h-[3px] after:w-full after:bg-orange after:rounded-full"
+                      className="relative block text-md font-sans font-light tracking-wide py-5 cursor-pointer text-opacity-85"
+                      activeClass="font-semibold text-red-500  font-semibold	after:content-[''] text-orange after:absolute after:bottom-[-2px] after:right-0 after:left-0 after:h-[3px] after:w-full after:bg-orange after:rounded-full"
                     >
-                      {menu.title} 
+                      {menu.title}
                     </ReactScrollLink>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="items-center justify-end hidden space-x-3 md:flex">        
-              <Button className="rounded-full" asChild>
+            <div className="items-center justify-end hidden space-x-3 md:flex">
+              <Button variant="default" className="rounded-full" asChild>
                 <Link href="">Get started</Link>
               </Button>
             </div>
@@ -112,10 +109,8 @@ const Navbar = () => {
 
 export default Navbar;
 
-
-
 const Test = styled.div`
   height: 100px;
   width: 100px;
-  background-color: green
-`
+  background-color: green;
+`;

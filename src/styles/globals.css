@@ -12,84 +12,85 @@ h2 {
 
 @font-face {
   font-family: "Canela Text";
-  src: url("/fonts/CanelaText-Regular-Trial.otf") format("opentype");
+  src: url("/fonts/Canela/CanelaText-Regular-Trial.otf") format("opentype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Canela Text";
-  src: url("/fonts/CanelaText-RegularItalic-Trial.otf") format("opentype");
+  src: url("/fonts/Canela/CanelaText-RegularItalic-Trial.otf")
+    format("opentype");
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Canela Text";
-  src: url("/fonts/CanelaText-Medium-Trial.otf") format("opentype");
+  src: url("/fonts/Canela/CanelaText-Medium-Trial.otf") format("opentype");
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Canela Text";
-  src: url("/fonts/CanelaText-MediumItalic-Trial.otf") format("opentype");
+  src: url("/fonts/Canela/CanelaText-MediumItalic-Trial.otf") format("opentype");
   font-weight: 500;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Canela Text";
-  src: url("/fonts/CanelaText-Bold-Trial.otf") format("opentype");
+  src: url("/fonts/Canela/CanelaText-Bold-Trial.otf") format("opentype");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Canela Text";
-  src: url("/fonts/CanelaText-BoldItalic-Trial.otf") format("opentype");
+  src: url("/fonts/Canela/CanelaText-BoldItalic-Trial.otf") format("opentype");
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Canela Text";
-  src: url("/fonts/CanelaText-Light-Trial.otf") format("opentype");
+  src: url("/fonts/Canela/CanelaText-Light-Trial.otf") format("opentype");
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Canela Text";
-  src: url("/fonts/CanelaText-LightItalic-Trial.otf") format("opentype");
+  src: url("/fonts/Canela/CanelaText-LightItalic-Trial.otf") format("opentype");
   font-weight: 300;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Canela Text";
-  src: url("/fonts/CanelaText-Black-Trial.otf") format("opentype");
+  src: url("/fonts/Canela/CanelaText-Black-Trial.otf") format("opentype");
   font-weight: 900;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Canela Text";
-  src: url("/fonts/CanelaText-BlackItalic-Trial.otf") format("opentype");
+  src: url("/fonts/Canela/CanelaText-BlackItalic-Trial.otf") format("opentype");
   font-weight: 900;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Canela Text";
-  src: url("/fonts/CanelaText-Thin-Trial.otf") format("opentype");
+  src: url("/fonts/Canela/CanelaText-Thin-Trial.otf") format("opentype");
   font-weight: 100;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Canela Text";
-  src: url("/fonts/CanelaText-ThinItalic-Trial.otf") format("opentype");
+  src: url("/fonts/Canela/CanelaText-ThinItalic-Trial.otf") format("opentype");
   font-weight: 100;
   font-style: italic;
 }
@@ -138,18 +139,10 @@ h2 {
 
 @layer base {
   :root {
-    /* Liveblocks light mode variables */
-    --lb-background: hsl(var(--background));
-    --lb-foreground: hsl(var(--foreground));
-    --lb-accent: hsl(var(--primary));
-    --lb-accent-foreground: hsl(var(--primary-foreground));
-    --lb-radius: var(--radius);
-    --lb-button-radius: calc(0.75 * var(--radius));
-
     /* Our light mode theme */
-    --background: 172 63% 50%;
+    --background: 0 0% 100%;
     /* Light mode background color (light blue) */
-    --foreground: 220 10% 20%;
+    --foreground: 0 0% 0%;
     /* Light mode foreground color (dark gray) */
 
     --card: 220 16.92% 97%;
@@ -215,25 +208,9 @@ h2 {
   }
 
   body {
-    font-family: "Canela Text", sans-serif;
+    /* font-family: "Canela Text", sans-serif; */
+    font-family: "DM Sans", sans-serif;
   }
-}
-
-.lb-comment-header {
-  @apply mb-0 !important;
-}
-
-.lb-comment-body {
-  @apply text-sm !important;
-}
-
-.lb-comment-author {
-  @apply text-sm !important;
-  @apply font-semibold !important;
-}
-
-.lb-composer-editor {
-  @apply text-sm !important;
 }
 
 input:focus,
