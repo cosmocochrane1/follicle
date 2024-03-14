@@ -27,7 +27,7 @@ export async function serverGetUserFromSupabaseAuth(req, res) {
           scope:profile_organizations(*)
         )
       )
-    `,
+    `
     )
     .eq("id", authUser.id)
     .single();
@@ -47,7 +47,7 @@ export async function serverGetUserFromSupabaseAuth(req, res) {
 
   if (organization_id) {
     selectedOrganization = user.organizations.find(
-      (org) => org.id === organization_id,
+      (org) => org.id === organization_id
     );
   }
 
@@ -77,7 +77,7 @@ export async function serverGetUserFromSupabaseAuth(req, res) {
   };
 
   user.scope = updatedOrganization.profiles.find(
-    (profile) => profile.id === user.id,
+    (profile) => profile.id === user.id
   ).scope;
   user.scope_access = user?.scope?.scope_access || null;
 
