@@ -7,6 +7,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { Element } from "react-scroll";
 import styled from "styled-components";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const FloatingRectangleOne = styled.img`
   position: absolute;
@@ -76,7 +82,7 @@ const MarketingPage = () => {
           <FloatingRectangleOne src={"/floating-rectangle-1.png"} />
           <FloatingRectangleTwo src={"/floating-rectangle-2.png"} />
 
-          <div className="container w-full py-20 mx-auto">
+          <div className="container w-full py-20 mx-auto pt-14">
             <div className="flex flex-col items-center justify-center font-serif">
               <h2 className="font-extrabold text-5xl">
                 Most Trusted Professionals
@@ -206,6 +212,89 @@ const MarketingPage = () => {
                     </p>
                   </div>
                 </SingleFeatureList>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div className="h-[90px] bg-background" />
+        <section className={"bg-white"}>
+          <div className={"m-auto container w-[80%] rounded-lg p-6 py-14"}>
+            <div className="w-3/4 mx-auto">
+              <div className={"text-center flex flex-col items-center"}>
+                <h2 className="font-extrabold text-5xl font-serif">
+                  Success Stories
+                </h2>
+                <p className={"subheader-text max-w-[650px] pt-14 pb-0"}>
+                  These alternatives to the classic Lorem Ipsum texts are often
+                  amusing and tell short, funny or nonsensical stories.
+                </p>
+              </div>
+
+              <div className={"flex flex-col justify-center pt-14 space-y-4"}>
+                <Accordion type="single" collapsible>
+                  <AccordionItem value="item-1">
+                    <AccordionTrigger>
+                      According to most sources?
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      It seems that only fragments of the original text remain
+                      in the Lorem Ipsum texts used today. One may speculate
+                      that over the course of time certain letters were added or
+                      deleted at various positions within the text. This might
+                      also explain why one can now find slightly different
+                      versions. Due to the age of the Lorem Ipsum text there are
+                      no copyright issues to contend with.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+                <Accordion type="single" collapsible>
+                  <AccordionItem value="item-2">
+                    <AccordionTrigger>
+                      According to most sources?
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      It seems that only fragments of the original text remain
+                      in the Lorem Ipsum texts used today. One may speculate
+                      that over the course of time certain letters were added or
+                      deleted at various positions within the text. This might
+                      also explain why one can now find slightly different
+                      versions. Due to the age of the Lorem Ipsum text there are
+                      no copyright issues to contend with.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+                <Accordion type="single" collapsible>
+                  <AccordionItem value="item-3">
+                    <AccordionTrigger>
+                      According to most sources?
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      It seems that only fragments of the original text remain
+                      in the Lorem Ipsum texts used today. One may speculate
+                      that over the course of time certain letters were added or
+                      deleted at various positions within the text. This might
+                      also explain why one can now find slightly different
+                      versions. Due to the age of the Lorem Ipsum text there are
+                      no copyright issues to contend with.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+                <Accordion type="single" collapsible>
+                  <AccordionItem value="item-3">
+                    <AccordionTrigger>
+                      According to most sources?
+                    </AccordionTrigger>
+                    <AccordionContent>
+                      It seems that only fragments of the original text remain
+                      in the Lorem Ipsum texts used today. One may speculate
+                      that over the course of time certain letters were added or
+                      deleted at various positions within the text. This might
+                      also explain why one can now find slightly different
+                      versions. Due to the age of the Lorem Ipsum text there are
+                      no copyright issues to contend with.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
               </div>
             </div>
           </div>
