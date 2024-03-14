@@ -21,7 +21,7 @@ const FloatingRectangleTwo = styled.img`
 
 const DoctorSquare = ({ name, specialty, rating, reviewCount, location }) => {
   return (
-    <Container className={'rounded-lg  flex flex-col bg-white p-6'}>
+    <Container className={'rounded-sm shadow-cardShadow flex flex-col bg-white p-6'}>
       <ProfilePicture src="/doctor-circle.png" />
       <p className="text-base text-secondary-foreground">{name}</p>
       <p className={"text-sm pt-1 text-muted-foreground"}>{specialty}</p>
@@ -110,22 +110,23 @@ const MarketingPage = () => {
         <section className={'bg-white'}>
           <div className={'m-auto container w-[80%] bg-lightOrange rounded-lg p-6'}>
 
-          <div className={'text-center flex flex-col items-center '}>
-            <h2 >3 Easy Steps to get your Solution</h2>
-            <p className={'subheader-text max-w-[650px] mt-[30px]'}>These alternatives to the classic Lorem Ipsum texts are often amusing and tell short, funny or nonsensical stories.</p>
-          </div>
-          <div className={'flex flex-col justify-center mt-[30px]'}>
-            <div>
-              <div>
-
-              </div>
-              <div className={'flex flex-col'}>
-
-
-              </div>
+            <div className={'text-center flex flex-col items-center'}>
+              <h2 >3 Easy Steps to get your Solution</h2>
+              <p className={'subheader-text max-w-[650px] mt-[30px]'}>These alternatives to the classic Lorem Ipsum texts are often amusing and tell short, funny or nonsensical stories.</p>
             </div>
 
-          </div>
+            <div className={'flex flex-col justify-center mt-[30px]'}>
+              <SingleFeatureList className={'bg-white gap-[34px] rounded-sm flex flex-row p-[15px]'}>
+                <div className={'p-[25px] bg-lightOrange rounded-md'}>
+                  <img src={'/searchDoctor.png'} alt={'search doctor'} />
+                </div>
+                <div className={'flex flex-col'}>
+                  <p className={'text-5'}>Search Doctor</p>
+                  <p className={'text-3'}>These alternatives to the classic Lorem Ipsum texts are often amusing and tell short.</p>
+                </div>
+              </SingleFeatureList>
+
+            </div>
           </div>
         </section>
 
@@ -149,6 +150,10 @@ const WholePageContainer = styled.div`
 `
 
 const HeroText = styled.h1`
+`
+
+const SingleFeatureList = styled.div`
+  
 `
 
 const CornerImage = styled.img`
