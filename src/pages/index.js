@@ -72,7 +72,9 @@ const MarketingPage = () => {
               </HeroText>
             </div>
             <div className="h-[90px]" />
-            <DoctorSearch />
+            <div className="max-w-4xl w-full">
+              <DoctorSearch />
+            </div>
             <div className="h-[90px]" />
           </div>
         </HeroSection>
