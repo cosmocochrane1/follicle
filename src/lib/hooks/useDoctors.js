@@ -19,7 +19,7 @@ export const useDoctors = () => {
     }
     return queryParts.length > 0 ? `?${queryParts.join("&")}` : "";
   }, [specialties, location]);
-  const { data, error } = useSWR(`/api/doctors${url}`, fetcher);
+  const { data, error } = useSWR(`/api/doctor${url}`, fetcher);
 
   const isLoading = !data && !error;
   return {

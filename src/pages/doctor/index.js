@@ -66,7 +66,6 @@ const DoctorSquare = ({
     </div>
   );
 };
-
 const MarketingPage = () => {
   const { doctors, isLoading, error } = useDoctors();
   return (

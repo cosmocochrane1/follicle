@@ -10,7 +10,7 @@ async function GET(req, res) {
     let supabaseQuery = supabase.from("doctors").select(`*`);
 
     if (specialties !== undefined) {
-      supabaseQuery = supabaseQuery.ilike("specialties", `%${specialties}%`);
+      supabaseQuery = supabaseQuery.contains("specialty", [`%${specialties}%`]);
     }
 
     if (location !== undefined) {
