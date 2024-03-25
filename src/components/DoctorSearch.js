@@ -56,28 +56,28 @@ export function DoctorSearch({ onContinue }) {
       <Form {...form} className="w-full h-full p-1">
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col w-full space-y-3 bg-background p-12 py-8 shadow-sm rounded-3xl "
+          className="flex flex-col w-full p-12 py-8 space-y-3 shadow-sm bg-background rounded-3xl "
         >
-          <div className=" flex justify-between align-center gap-14">
+          <div className="flex flex-col justify-between flex-1 w-full md:flex-row lg:flex-row align-center gap-14">
             <FormField
-              className="w-full flex-1"
+              className="flex-1 w-full"
               control={form.control}
               name="specialties"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel className="text-md tracking-wider">
+                  <FormLabel className="tracking-wider text-md">
                     Specialties
                   </FormLabel>
-                  <div className="w-full relative">
+                  <div className="relative w-full">
                     <LucideIcon
                       name="search"
-                      className="h-5 w-5 text-red-500 absolute left-0 top-1/2 transform -translate-y-1/2"
+                      className="absolute left-0 w-5 h-5 text-red-500 transform -translate-y-1/2 top-1/2"
                     />
                     <FormControl>
                       <Input
                         type="text"
                         placeholder="Condition, procedure,doctors"
-                        className="w-full text-md tracking-wider pl-8 bg-background rounded-none border-t-0 border-r-0 border-l-0 border-b-2 border-card"
+                        className="w-full pl-8 tracking-wider border-t-0 border-b-2 border-l-0 border-r-0 rounded-none text-md bg-background border-card"
                         {...field}
                       />
                     </FormControl>
@@ -87,24 +87,24 @@ export function DoctorSearch({ onContinue }) {
               )}
             />
             <FormField
-              className="w-full flex-1"
+              className="flex-1 w-full"
               control={form.control}
               name="location"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel className="text-md tracking-wider">
+                  <FormLabel className="tracking-wider text-md">
                     Location
                   </FormLabel>
-                  <div className="w-full relative">
+                  <div className="relative w-full">
                     <LucideIcon
                       name="map-pin"
-                      className="h-5 w-5 text-red-500 absolute left-0 top-1/2 transform -translate-y-1/2"
+                      className="absolute left-0 w-5 h-5 text-red-500 transform -translate-y-1/2 top-1/2"
                     />
                     <FormControl>
                       <Input
                         type="text"
                         placeholder="City, state, or zip code"
-                        className="w-full text-md tracking-wider pl-8 bg-background rounded-none border-t-0 border-r-0 border-l-0 border-b-2 border-card"
+                        className="w-full pl-8 tracking-wider border-t-0 border-b-2 border-l-0 border-r-0 rounded-none text-md bg-background border-card"
                         {...field}
                       />
                     </FormControl>
@@ -121,7 +121,7 @@ export function DoctorSearch({ onContinue }) {
                 size="icon"
                 disabled={form.formState.errors.password}
               >
-                {<LucideIcon name="search" className="h-8 w-8" />}
+                {<LucideIcon name="search" className="w-8 h-8" />}
               </Button>
             </div>
           </div>
