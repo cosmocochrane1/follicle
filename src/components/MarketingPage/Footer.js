@@ -7,15 +7,15 @@ import styled from "styled-components";
 const Footer = () => {
   return (
     <footer className="relative bg-white">
-      {/* <WhiteOval /> */}
+      <TopOfFooterItem />
       <div className="relative w-full py-6 border-t rounded-tl-[50px] pb-[140px] pt-[90px] rounded-tr-[50px] bg-tertiary">
         <div className={"absolute w-full overflow-hidden bottom-0 left-0"}>
           <div>
-            <div className="w-screen">
+            <div className="w-screen h-full md:h-full lg:h-full">
               <img
                 src="/footer-blob.png"
                 alt="blob"
-                className="w-full contain"
+                className="h-[100px] w-full md:h-auto lg:h-auto w-full contain"
               />
             </div>
             <p className="absolute left-0 right-0 m-auto text-sm font-light text-center text-white bottom-5">
@@ -26,7 +26,7 @@ const Footer = () => {
 
         <div className="container flex flex-col items-center justify-between w-full mx-auto">
           <div className={"flex mb-[100px] w-full flex-col text-center"}>
-            <h2 className="font-extrabold text-5xl font-serif text-background">
+            <h2 className="z-10 font-serif text-5xl font-extrabold text-background">
               Get The Latest
             </h2>
             <p className="text-sm text-white mt-4 mb-[55px]">
@@ -73,12 +73,7 @@ const Footer = () => {
               >
                 Treatments
               </Link>
-              <Link
-                href="/auth"
-                className="text-sm text-tertiary-foregroundSecondary"
-              >
-                Testimonials
-              </Link>
+
               <Link
                 href="/auth"
                 className="text-sm text-tertiary-foregroundSecondary"
@@ -162,10 +157,14 @@ const Footer = () => {
 
 export default Footer;
 
-const WhiteOval = styled.div`
-  background: white;
-  width: 100%;
-  width: 100px;
-  height: 100px;
-  border-radius: 100%;
-`;
+const TopOfFooterItem = styled.div`
+    background-image: url(/footer-item.svg);
+    background-size: cover;
+    width: 100vw;
+    position: absolute;
+    z-index: 1;
+    top: -35px;
+    left: 0;
+    height: 100px;
+ 
+`

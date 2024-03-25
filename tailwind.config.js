@@ -22,10 +22,11 @@ module.exports = {
         serif: ["Canela Text", "serif"],
       },
       boxShadow: {
-        cardShadow: "2px 3px 36px rgba(170, 210, 235, 0.2)",
+        cardShadow: "2px 3px 36px 0px rgba(173, 210, 235, 0.2)",
       },
       colors: {
         primaryText: "#545454",
+        lightGrey:  "#545454",
         secondaryText: "#1F1F1F",
         lightBlue: "#F4FCFB",
         darkBlue: "#2FCFBA",

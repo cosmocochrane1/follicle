@@ -17,6 +17,7 @@ import {
 const FloatingRectangleOne = styled.img`
   position: absolute;
   top: 85px;
+  z-index: 0;
   left: 25px;
 `;
 const FloatingRectangleTwo = styled.img`
@@ -27,10 +28,10 @@ const FloatingRectangleTwo = styled.img`
 
 const DoctorSquare = ({ name, specialty, rating, reviewCount, location }) => {
   return (
-    <Container
-      className={"rounded-sm shadow-cardShadow flex flex-col bg-white p-6"}
+    <div
+      className={"max-w-[275px] rounded-sm shadow-cardShadow flex flex-col bg-white p-6"}
     >
-      <ProfilePicture src="/doctor-circle.png" />
+      <img className={'w-[124px] h-[124px]'} src="/doctor-circle.png" />
       <p className="text-base text-secondary-foreground">{name}</p>
       <p className={"text-sm pt-1 text-muted-foreground"}>{specialty}</p>
       <p
@@ -40,7 +41,7 @@ const DoctorSquare = ({ name, specialty, rating, reviewCount, location }) => {
       >
         <LucideIcon name={"star"} className={"text-orange"} />
         {rating}{" "}
-        <span className="font-normal underline text-muted-foreground">
+        <span className="font-light underline text-muted-foreground">
           {reviewCount}
         </span>
       </p>
@@ -48,51 +49,47 @@ const DoctorSquare = ({ name, specialty, rating, reviewCount, location }) => {
         <LucideIcon name={"map-pin"} className={"text-orange"} />
         {location}
       </p>
-    </Container>
+    </div>
   );
 };
 
-const Container = styled.div``;
-const ProfilePicture = styled.img`
-  width: 124px;
-  height: 124px;
-`;
+
 
 const MarketingPage = () => {
   return (
     <div className="text-foreground text-opacity-85 m-w-[1920px]">
       <Navbar />
-      <WholePageContainer className="pt-32">
+      <WholePageContainer className="pt-20 md:pt-32">
         <HeroSection className="container mx-auto">
           <CornerImage src="/corner-image.png" className="" />
           <div className="flex flex-col items-center justify-center pb-14">
             <div className={"max-w-[650px]"}>
               <HeroText className="w-full mb-4 font-serif max-w-[992px] leading-snug md:leading-snug text-center font-extrabold text-black text-5xl md:text-7xl">
-                Find A Doctor To Fix Your Shit
+                Find A <span className={'text-orange relative'}><img className={'absolute left-0 bottom-[-5px]'} src={'/doctor-underline.png'} />Doctor</span> To Fix Your Shit
               </HeroText>
             </div>
-            <div className="h-[90px]" />
-            <div className="max-w-4xl w-full">
+            <div className="h-[20px] md:h-[90px]" />
+            <div className="w-full max-w-4xl">
               <DoctorSearch />
             </div>
-            <div className="h-[90px]" />
+            <div className="h-[20px] md:h-[90px]" />
           </div>
         </HeroSection>
 
         <section className="relative overflow-hidden bg-white bg-card">
-          <div className="h-[90px]" />
+        <div className="h-[20px] md:h-[90px]" />
           <FloatingRectangleOne src={"/floating-rectangle-1.png"} />
           <FloatingRectangleTwo src={"/floating-rectangle-2.png"} />
 
           <div className="container w-full py-20 mx-auto pt-14">
             <div className="flex flex-col items-center justify-center font-serif">
-              <h2 className="font-extrabold text-5xl">
-                Most Trusted Professionals
+              <h2 className="z-10 text-5xl font-extrabold text-center">
+                Most Trusted <span className={'text-orange relative'}><img className={' absolute left-0  top-[-5px] bottom-0 transform'} src={'/circle-text.png'} />Professionals</span>
               </h2>
             </div>
             <div
               className={
-                "grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 relative flex-row mt-[75px] mb-[75px] w-full justify-center"
+                "flex flex-col items-center md:grid lg:grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 relative  mt-[75px] mb-[75px] w-full justify-center"
               }
             >
               <DoctorSquare
@@ -130,7 +127,7 @@ const MarketingPage = () => {
             <div className="flex items-center justify-center pt-0">
               <Button
                 variant="outline"
-                className="rounded-full gap-2 border-primary text-primary hover:text-primary"
+                className="gap-2 rounded-full border-primary text-primary hover:text-primary"
               >
                 See More
                 <LucideIcon name="arrow-right" className="w-4 h-4" />
@@ -145,10 +142,10 @@ const MarketingPage = () => {
               "m-auto container w-[80%] bg-lightOrange rounded-lg p-6 py-14"
             }
           >
-            <div className="w-3/4 mx-auto">
+            <div className="w-full mx-auto md:w-full lg:w-3/4">
               <div className={"text-center flex flex-col items-center"}>
-                <h2 className="font-extrabold text-5xl font-serif">
-                  3 Easy Steps to get your Solution
+                <h2 className="font-serif text-5xl font-extrabold">
+                  3 Easy Steps to get your <span className={'text-orange relative'}><img className={' absolute left-[-5px] w-[200%] top-[-5px] bottom-0 transform'} src={'/circle-text.png'} />Solution</span>
                 </h2>
                 <p className={"subheader-text max-w-[650px] pt-14 pb-0"}>
                   These alternatives to the classic Lorem Ipsum texts are often
@@ -159,11 +156,13 @@ const MarketingPage = () => {
               <div className={"flex flex-col justify-center pt-14 space-y-4"}>
                 <SingleFeatureList
                   className={
-                    "bg-white gap-[34px] rounded-sm flex flex-row p-[15px]"
+                    "bg-white gap-[34px] relative rounded-sm flex flex-col md:flex-row p-[15px]"
                   }
                 >
-                  <div className={"p-[25px] bg-lightOrange rounded-md"}>
-                    <img src={"/searchDoctor.png"} alt={"search doctor"} />
+                  <p className={'text-4xl text-[#F0D7D5] ml-0 md:ml-[-50px] font-bold font-serif self-center'}>01</p>
+                  <div className={"p-[25px] h-[20%] w-auto self-center bg-lightOrange rounded-md"}>
+                    <img className={'w-[60px] h-auto'}
+                      src={"/searchDoctor.png"} alt={"search doctor"} />
                   </div>
                   <div className={"flex flex-col items-start justify-center"}>
                     <h4 className={"font-serif font-bold text-2xl"}>
@@ -177,12 +176,15 @@ const MarketingPage = () => {
                 </SingleFeatureList>
                 <SingleFeatureList
                   className={
-                    "bg-white gap-[34px] rounded-sm flex flex-row p-[15px]"
+                    "bg-white gap-[34px] rounded-sm flex flex-col md:flex-row p-[15px]"
                   }
                 >
-                  <div className={"p-[25px] bg-lightOrange rounded-md"}>
+                  <p className={'text-4xl text-[#F0D7D5] ml-0 md:ml-[-50px] font-bold font-serif self-center'}>02</p>
+
+                  <div className={"p-[25px] h-[20%] w-auto self-center bg-lightOrange rounded-md"}>
                     <img
-                      src={"/searchDoctor.png"}
+                      className={'w-[60px] h-auto'}
+                      src={"/schedule.png"}
                       alt={"Schedule Appointment"}
                     />
                   </div>
@@ -198,11 +200,14 @@ const MarketingPage = () => {
                 </SingleFeatureList>
                 <SingleFeatureList
                   className={
-                    "bg-white gap-[34px] rounded-sm flex flex-row p-[15px]"
+                    "bg-white gap-[34px] rounded-sm flex flex-col md:flex-row p-[15px]"
                   }
                 >
-                  <div className={"p-[25px] bg-lightOrange rounded-md"}>
-                    <img src={"/searchDoctor.png"} alt={"Get Your Solution"} />
+                  <p className={'text-4xl text-[#F0D7D5] ml-0 md:ml-[-50px] font-bold font-serif self-center'}>03</p>
+
+                  <div className={"p-[25px] h-[20%] w-auto self-center bg-lightOrange rounded-md"}>
+                    <img className={'w-[60px] h-auto'}
+                      src={"/solution.png"} alt={"Get Your Solution"} />
                   </div>
                   <div className={"flex flex-col items-start justify-center"}>
                     <h4 className={"font-serif font-bold text-2xl"}>
@@ -218,12 +223,13 @@ const MarketingPage = () => {
             </div>
           </div>
         </section>
-        <div className="h-[90px] bg-background" />
+        <div className="h-[20px] md:h-[90px] bg-background" />
+
         <section className={"bg-white"}>
-          <div className={"m-auto container w-[80%] rounded-lg p-6 py-14"}>
-            <div className="w-3/4 mx-auto">
+          <div className={"m-auto container w-full md:w-full lg:w-[80%] rounded-lg p-6 py-14"}>
+            <div className="w-full mx-auto lg:w-3/4 md:w-3/4">
               <div className={"text-center flex flex-col items-center"}>
-                <h2 className="font-extrabold text-5xl font-serif">
+                <h2 className="font-serif text-5xl font-extrabold">
                   Success Stories
                 </h2>
                 <p className={"subheader-text max-w-[650px] pt-14 pb-0"}>
@@ -301,9 +307,8 @@ const MarketingPage = () => {
             </div>
           </div>
         </section>
-        <div className="h-[90px] bg-background" />
+        <div className="h-[20px] md:h-[90px] bg-background" />
       </WholePageContainer>
-
       <Footer />
     </div>
   );
