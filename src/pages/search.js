@@ -95,7 +95,7 @@ const MarketingPage = () => {
                       <DoctorSquare
                         name={doctor.name}
                         specialty={doctor.specialty_list}
-                        rating={doctor.specialty}
+                        rating={doctor.rating}
                         reviewCount={69}
                         location={doctor.location}
                         id={doctor.id}
