@@ -14,6 +14,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
+import { useDoctors } from "@/lib/hooks/useDoctors";
+
 const FloatingRectangleOne = styled.img`
   position: absolute;
   top: 85px;
@@ -36,19 +38,23 @@ const DoctorSquare = ({ name, specialty, rating, reviewCount, location }) => {
       <p className={"text-sm pt-1 text-muted-foreground"}>{specialty}</p>
       <p
         className={
-          "text-sm pt-3 text-secondary-foreground font-bold flex gap-2"
+          "text-sm pt-3 text-secondary-foreground font-bold items-center flex gap-2"
         }
       >
-        <LucideIcon name={"star"} className={"text-orange"} />
+        <LucideIcon name={"star"} className={"text-orange h-5"} />
         {rating}{" "}
         <span className="font-light underline text-muted-foreground">
-          {reviewCount}
+          {reviewCount} Verified Reviews
         </span>
       </p>
-      <p className={"text-sm pt-3 text-muted-foreground flex gap-2"}>
-        <LucideIcon name={"map-pin"} className={"text-orange"} />
-        {location}
-      </p>
+
+      <div className={'flex gap-2 pt-3 items-center'}>
+        <div className={'w-[25px]'}><LucideIcon name={"map-pin"} className={"text-orange h-5 text-sm"} /></div>
+        <p className={"text-sm  text-muted-foreground "}>
+          {location}
+        </p>
+
+      </div>
     </div>
   );
 };
@@ -56,8 +62,10 @@ const DoctorSquare = ({ name, specialty, rating, reviewCount, location }) => {
 
 
 const MarketingPage = () => {
+  const { doctors, isLoading, error } = useDoctors();
+  const firstFour = doctors?.slice(0, 4);
   return (
-    <div className="text-foreground text-opacity-85 m-w-[1920px]">
+    <div className="text-foreground text-opacity-85 max-w-[1920px]">
       <Navbar />
       <WholePageContainer className="pt-20 md:pt-32">
         <HeroSection className="container mx-auto">
@@ -77,7 +85,7 @@ const MarketingPage = () => {
         </HeroSection>
 
         <section className="relative overflow-hidden bg-white bg-card">
-        <div className="h-[20px] md:h-[90px]" />
+          <div className="h-[20px] md:h-[90px]" />
           <FloatingRectangleOne src={"/floating-rectangle-1.png"} />
           <FloatingRectangleTwo src={"/floating-rectangle-2.png"} />
 
@@ -92,37 +100,20 @@ const MarketingPage = () => {
                 "flex flex-col items-center md:grid lg:grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4 relative  mt-[75px] mb-[75px] w-full justify-center"
               }
             >
-              <DoctorSquare
-                name={"Dr. Christopher Corrales, DO"}
-                specialty={"Primary care doctor"}
-                rating={"4.97"}
-                reviewCount={"420 Verified Reviews"}
-                location={"Sugar Land, TX"}
-              />
-
-              <DoctorSquare
-                name={"Dr. Christopher Corrales, DO"}
-                specialty={"Primary care doctor"}
-                rating={"4.97"}
-                reviewCount={"420 Verified Reviews"}
-                location={"Sugar Land, TX"}
-              />
-
-              <DoctorSquare
-                name={"Dr. Christopher Corrales, DO"}
-                specialty={"Primary care doctor"}
-                rating={"4.97"}
-                reviewCount={"420 Verified Reviews"}
-                location={"Sugar Land, TX"}
-              />
-
-              <DoctorSquare
-                name={"Dr. Christopher Corrales, DO"}
-                specialty={"Primary care doctor"}
-                rating={"4.97"}
-                reviewCount={"420 Verified Reviews"}
-                location={"Sugar Land, TX"}
-              />
+              {firstFour?.map((doctor) => {
+                return (
+                  <Link href={`/doctor/${doctor.id}`}>
+                    <DoctorSquare
+                      name={doctor.name}
+                      specialty={doctor.specialty.join(", ")}
+                      rating={doctor.rating}
+                      reviewCount={10}
+                      location={doctor.location}
+                      id={doctor.id}
+                    />
+                  </Link>
+                );
+              })}
             </div>
             <div className="flex items-center justify-center pt-0">
               <Button
