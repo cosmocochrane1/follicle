@@ -2,17 +2,11 @@ import { DoctorSearch } from "@/components/DoctorSearch";
 import LucideIcon from "@/components/LucideIcon";
 import { Footer, Navbar } from "@/components/MarketingPage";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
+
 import Link from "next/link";
-import { Element } from "react-scroll";
+
 import styled from "styled-components";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { useState } from "react";
 import { useDoctors } from "@/lib/hooks/useDoctors";
 import { useRouter } from "next/router";
 
@@ -68,7 +62,14 @@ const DoctorSquare = ({
 };
 
 const MarketingPage = () => {
-  const { doctors, isLoading, error } = useDoctors();
+  const [refreshDoctorSearch, setRefreshDoctorSearch] = useState(0);
+  const { doctors, isLoading, error } = useDoctors(refreshDoctorSearch);
+
+  const refreshDoctorSearchState = () => {
+    const newVal = refreshDoctorSearch + 1
+    setRefreshDoctorSearch(newVal);
+  }
+  
   return (
     <div className="text-foreground text-opacity-85 m-w-[1920px]">
       <Navbar />
@@ -77,7 +78,7 @@ const MarketingPage = () => {
           <CornerImage src="/corner-image.png" className="" />
           <div className="flex flex-col items-center justify-center pb-14">
             <div className="w-full max-w-5xl">
-              <DoctorSearch />
+              <DoctorSearch refreshDoctorSearch={() => refreshDoctorSearchState()}/>
             </div>
             <div className="h-[40px]" />
           </div>
@@ -93,9 +94,9 @@ const MarketingPage = () => {
                     <Link href={`/doctor/${doctor.id}`}>
                       <DoctorSquare
                         name={doctor.name}
-                        specialty={doctor.specialty.join(", ")}
+                        specialty={doctor.specialty_list}
                         rating={doctor.specialty}
-                        reviewCount={doctor.specialty}
+                        reviewCount={69}
                         location={doctor.location}
                         id={doctor.id}
                       />

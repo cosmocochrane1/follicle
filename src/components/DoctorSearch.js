@@ -4,7 +4,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import qs from "query-string";
+import { useSearchParams } from 'next/navigation';
+
 import {
   Form,
   FormControl,
@@ -23,12 +24,16 @@ const doctorSearchSchema = z.object({
   location: z.any().optional(),
 });
 
-export function DoctorSearch({ onContinue }) {
+export function DoctorSearch({ refreshDoctorSearch }) {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const specialties = searchParams.get('specialties');
+  const location = searchParams.get('location');
+
   const form = useForm({
     resolver: zodResolver(doctorSearchSchema),
     defaultValues: {
-      specialties: "",
+      specialties: specialties,
       location: "",
     },
     reValidateMode: "onChange",
@@ -46,9 +51,9 @@ export function DoctorSearch({ onContinue }) {
       queryParts.push(`location=${values.location}`);
     }
     const query = queryParts.length > 0 ? `?${queryParts.join("&")}` : "";
-
     router.push(`/search${query}`);
-    onContinue && onContinue();
+
+    refreshDoctorSearch && refreshDoctorSearch()
   };
 
   return (

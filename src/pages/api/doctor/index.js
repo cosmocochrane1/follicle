@@ -4,13 +4,13 @@ async function GET(req, res) {
   // Create authenticated Supabase Client
   const supabase = createPagesServerClient({ req, res });
   const { specialties, location } = req.query;
+  debugger;
 
   try {
     // Build the query dynamically based on conditions
     let supabaseQuery = supabase.from("doctors").select(`*`);
-
     if (specialties !== undefined) {
-      supabaseQuery = supabaseQuery.contains("specialty", [`%${specialties}%`]);
+      supabaseQuery = supabaseQuery.ilike("specialty_list", [`%${specialties}%`]);
     }
 
     if (location !== undefined) {
